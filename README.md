@@ -18,6 +18,7 @@ The dataset has a total of 150,588 rows, which includes both teams and players. 
 - `golddiffat20`: The difference in gold generated between the two teams 20 minutes into the match
 - `csdiffat20`: The difference in the number of minions and monsters killed by the two teams 20 minutes into the match
 - `xpdiffat20`: The difference in the amount of experience gained by the two teams 20 minutes into the match
+
 The following columns will not be used in the hypothesis test or the prediction model, but will be used to test missingness.
 - `firstbloodassist`: Whether or not the player assisted the first kill of the match
 - `datacompleteness`: Whether or not the data for the match is complete. complete indicates the data is complete, and partial indicate the data is incomplete
