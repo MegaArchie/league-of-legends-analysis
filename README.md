@@ -60,9 +60,13 @@ I performed a bivariate analysis on `win` and `golddiffat20`:
 
 The box plots show the distribution of gold difference 20 minutes into the match for teams that won and lost. Teams that lost generally had a negative gold difference, while teams that won generally had a positive gold difference.
 
-This is an interesting aggregate from the data:
+The following is an interesting aggregate from the data:
 
 | win   |   goldat20 |   csat20 |   killsat20 |   xpat20 |
 |:------|-----------:|---------:|------------:|---------:|
 | False |    32699.4 |  659.932 |     4.94924 |  39485.8 |
 | True  |    35705.5 |  687.538 |     7.99303 |  41512.3 |
+
+I grouped the data based by the outcome of the game, and I looked at the mean for each of the columns.
+
+## Assessment of Missingness
