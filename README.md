@@ -46,3 +46,6 @@ I performed a univariate analysis on `total_cs`:
   height="600"
   frameborder="0"
 ></iframe>
+
+The histogram shows the distribution of total minion and monster kills. The distribution peaks at the range 950-999, and the distribution is somewhat concentrated around that range.
+
