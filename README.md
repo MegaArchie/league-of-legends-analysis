@@ -70,3 +70,7 @@ The following is an interesting aggregate from the data:
 I grouped the data based by the outcome of the game, and I looked at the mean for each of the columns.
 
 ## Assessment of Missingness
+
+I believe that there are some columns that are not missing at random (NMAR). One such column that I believe is NMAR is `url`. I believe that when this column is missing, it is a result of the url for that match not existing or not being available. To make this column missing at random (MAR), I think that we could add a column that has a 1 if the url exist, and a 0 if the url doesn't exist.
+
+As mentioned before, `firstbloodassist` and `datacompleteness` are going to be used test missingness. In my tests, if found that the missingness of `firstbloodassist` depended on the value in `datacompleteness` but didn't depend on the value in `win`.
