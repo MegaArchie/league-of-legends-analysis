@@ -81,6 +81,7 @@ As mentioned before, `firstbloodassist` and `datacompleteness` are going to be u
 First, I performed the permutation test on `firstbloodassist` and `datacompleteness`.
 
 Null Hypothesis: The distribution of `datacompleteness` when `firstbloodassist` is missing is the same as when it is not missing
+
 Alternative Hypothesis: The distribution of `datacompletenesss` when `firstbloodassist` is missing is different as when it is not missing
 
 After performing the test, the observed test statistic was 0.83 and the p-value was 0.0. Below is the empirical distribution for the difference in means:
@@ -97,6 +98,7 @@ The p-value of 0.0 is less than 0.05, so we reject the null hypothesis and concl
 The second permutation test I did was on `firstbloodassist` and `win`.
 
 Null Hypothesis: The distribution of `result` when `firstbloodassist` is missing is the same as when it is not missing
+
 Alternative Hypothesis: The distribution of `result` when `firstbloodassist` is missing is different as when it is not missing
 
 After performing the test, the observed test statistic was 0.0 and the p-value was 1.0. Below is the empirical distribution for the difference in means:
@@ -115,6 +117,7 @@ The p-value of 1.0 is greater than 0.05, so we accept the null hypohtesis and co
 In the hypothesis test, I performed a permutation test to determine whether there is a difference in `total_cs`, the number of minions and monsters killed, between the winning and losing teams.
 
 Null Hypothesis: The number of minions and monsters killed by winning and losing teams have the same distribution
+
 Alternative Hypothesis: The winning teams kill more minions and monsters than losing teams
 
 I  used a test statistic of difference in means, and I used a significance level of 0.05.
@@ -144,6 +147,7 @@ I continued with a Random Forest Classifier, but I ran a GridSearchCV to determi
 I chose to test my model's fairness on teams with an absolute gold difference of less than 1,000. I performed a permutation test to determine whether or not my model was fair. 
 
 Null Hypothesis: The model is fair, the accuracy for both groups are roughly the same
+
 Alternative Hypothesis: The model is unfair, accuracy for teams with an absolute gold difference under 1,000 is less than teams with an absolute gold difference above 10,00
 
 I used a test statistic of difference in means, with a significance level of 0.05.
