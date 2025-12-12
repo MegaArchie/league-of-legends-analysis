@@ -25,4 +25,13 @@ The following columns will not be used in the hypothesis test or the prediction 
 
 ## Data Cleaning and Exploratory Data Analysis
 
-During the cleaning process, I keep only the rows corresponding to teams, as they contain all the data I am interested in. In addition to that, I only keep columns where the data is complete. 
+During the cleaning process, I keep only the rows corresponding to teams, as they contain all the data I am interested in. In addition to that, I only keep rows where the data is complete, which, as mentioned before, is still a large amount of data and more than enough to complete my analysis. I replace the column `result` with the column `win`, which represents the same information, but `win` represents the outcome of the game as a boolean,  where True indicates that a team won, and False indicates that a team lost. The outcome being represented as a boolean makes the information easier to see at a glance.
+This is the head of my cleaned Dataframe:
+
+| win   |   totalgold |   total_cs |   goldat20 |   csat20 |   killsat20 |   xpat20 |   golddiffat20 |   csdiffat20 |   xpdiffat20 |
+|:------|------------:|-----------:|-----------:|---------:|------------:|---------:|---------------:|-------------:|-------------:|
+| False |       47070 |        840 |      31962 |      631 |           5 |    36874 |           -944 |          -84 |        -4947 |
+| True  |       52617 |        976 |      32906 |      715 |           7 |    41821 |            944 |           84 |         4947 |
+| False |       57629 |       1209 |      31228 |      710 |           1 |    38596 |          -5140 |          -48 |        -3473 |
+| True  |       71004 |       1257 |      36368 |      758 |           5 |    42069 |           5140 |           48 |         3473 |
+| True  |       62868 |       1143 |      33717 |      752 |           3 |    41577 |           1744 |           14 |         2286 |
