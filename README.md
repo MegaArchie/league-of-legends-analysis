@@ -92,8 +92,34 @@ After performing the test, the observed test statistic was 0.83 and the p-value 
   frameborder="0"
 ></iframe>
 
-The p-value of 0.0 is less than 0.05, so we reject the null hypothesis and comclude that the missingness of `firstbloodassist` depends on `datacompleteness`.
+The p-value of 0.0 is less than 0.05, so we reject the null hypothesis and conclude that the missingness of `firstbloodassist` depends on `datacompleteness`.
 
 The second permutation test I did was on `firstbloodassist` and `win`.
 
-Null Hypothesis: distribution of result when firstbloodassist is missing is the same as when it is not missing
+Null Hypothesis: The distribution of `result` when `firstbloodassist` is missing is the same as when it is not missing
+Alternative Hypothesis: The distribution of `result` when `firstbloodassist` is missing is different as when it is not missing
+
+After performing the test, the observed test statistic was 0.0 and the p-value was 1.0. Below is the empirical distribution for the difference in means:
+
+<iframe
+  src="assets/missing2.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+The p-value of 1.0 is greater than 0.05, so we accept the null hypohtesis and conclude that the missingness of `firstbloodassist` does not depend on `result`.
+
+## Hypothesis Testing
+
+In the hypothesis test, I performed a permutation test to determine whether there is a difference in `total_cs`, the number of minions and monsters killed, between the winning and losing teams.
+
+Null Hypothesis: The number of minions and monsters killed by winning and losing teams have the same distribution
+Alternative Hypothesis: The winning teams kill more minions and monsters than losing teams
+
+I  used a test statistic of difference in means, and I used a slevel of significance of 0.05.
+
+As a result of my testing, I found an observed test statistic of 56.06, and a p-value of 0.0. As the p-value of 0.0 is less than 0.05, we reject the null hypothesis and conclude that the difference in the number of minions and monsters killed by winning and losing teams is statistically significant.
+
+## Framing a Prediction Problem
+
