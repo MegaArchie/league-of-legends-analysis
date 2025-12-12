@@ -76,7 +76,7 @@ I grouped the data based by the outcome of the game, and I looked at the mean fo
 
 I believe that there are some columns that are not missing at random (NMAR). One such column that I believe is NMAR is `url`. I believe that when this column is missing, it is a result of the url for that match not existing or not being available. To make this column missing at random (MAR), I think that we could add a column that has a 1 if the url exist, and a 0 if the url doesn't exist.
 
-As mentioned before, `firstbloodassist` and `datacompleteness` are going to be used test missingness. In my tests, if found that the missingness of `firstbloodassist` depended on the value in `datacompleteness` but didn't depend on the value in `win`. For both permuitation tests, I used difference in means as the test statistic, and I used 0.05 as the level of significance for both as well.
+As mentioned before, `firstbloodassist` and `datacompleteness` are going to be used test missingness. In my tests, if found that the missingness of `firstbloodassist` depended on the value in `datacompleteness` but didn't depend on the value in `win`. For both permuitation tests, I used difference in means as the test statistic, and I used 0.05 as the significance level for both as well.
 
 First, I performed the permutation test on `firstbloodassist` and `datacompleteness`.
 
@@ -117,9 +117,35 @@ In the hypothesis test, I performed a permutation test to determine whether ther
 Null Hypothesis: The number of minions and monsters killed by winning and losing teams have the same distribution
 Alternative Hypothesis: The winning teams kill more minions and monsters than losing teams
 
-I  used a test statistic of difference in means, and I used a slevel of significance of 0.05.
+I  used a test statistic of difference in means, and I used a significance level of 0.05.
 
 As a result of my testing, I found an observed test statistic of 56.06, and a p-value of 0.0. As the p-value of 0.0 is less than 0.05, we reject the null hypothesis and conclude that the difference in the number of minions and monsters killed by winning and losing teams is statistically significant.
 
 ## Framing a Prediction Problem
 
+Following the main question of my project, I want to be able to predict the outcome of a game during the game, that is, whether or not a team will win or lose. This type of prediction problem will be accomplished using binary classification, as the team will either win or lose. I want to predict the outcome of the match before it is over, so I will choose to use data collected 20 minutes into the match. I chose 20 minutes as I wanted a time somewhere in the middle of the match, but also more towards the end, so there will be more data to inform my predictions.
+
+The variable I will be predicting is the value in the `win` column. I will be using accuracy as my metric to evaluate my model. I chose accuracy over other metrics because I want the model to be correct as much of the time as possible, and the distribution of false positives and false negatives is not as important to me. At the time of the prediction, I will have access to data collected at or before the 20 minute mark in the game. As such, I will use the data collected at 20 minutes, as it provides me the most data available at that time.
+
+## Baseline Model
+
+For the baseline model I used a Random Forest Classifier at `max_depth`=5. The features I used were `goldat20`, `csat20`, `killsat20`, and `xpat20`. All of these features were quantitative and no encodings were necessary. 
+
+The resulting model had an accuracy of 0.75, or 75%. I think this is good performance for my model, as it is able to predict the correct outcome 75% of the time. As the model only uses data available at 20 minutes into the match, I think 75% accuracy is good as it would be very difficult to have near perfect accuracy when there is so much time left to play in the match.
+
+## Final Model
+
+In making my final model, I added three more features: `golddiffat20`, `csdiffat20`, and `xpdiffat20`. I thought that these would be good features to add because they provide information about how the two teams playing each other are doing compared to each other. This adds more information and allows the model to consider how far ahead a team might be, rather than just looking at values with no indication as to how the opponent is doing.
+
+I continued with a Random Forest Classifier, but I ran a GridSearchCV to determine the optimal `max_depth` for the model. I ran it, testing values from 5 to 200, with a step of 5 between each, which resulted in a `max_depth` of 10 being the best for performance. The accuracy of the model improved a bit, up to 0.785, or 78.5%. I think that this improvement is actually larger than it looks, because the prediction is not being made of data from the full game, just from the first 20 minutes, and the model can't predict unexpected changes that may happen after 20 minutes, so I think the final model's performance is very good.
+
+## Fairness Analysis
+
+I chose to test my model's fairness on teams with an absolute gold difference of less than 1,000. I performed a permutation test to determine whether or not my model was fair. 
+
+Null Hypothesis: The model is fair, the accuracy for both groups are roughly the same
+Alternative Hypothesis: The model is unfair, accuracy for teams with an absolute gold difference under 1,000 is less than teams with an absolute gold difference above 10,00
+
+I used a test statistic of difference in means, with a significance level of 0.05.
+
+After performing the test, I found an observed test statistice of 0.116, and a p-value of 0.0. As the p-value of 0.0 is less than 0.05, we reject the null and conclude that teams with an absolute gold difference under 1,000 are less accurately predicted.
