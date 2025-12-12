@@ -49,3 +49,13 @@ I performed a univariate analysis on `total_cs`:
 
 The histogram shows the distribution of total minion and monster kills. The distribution peaks at the range 950-999, and the distribution is somewhat concentrated around that range.
 
+I performed a bivariate analysis on `win` and `golddiffat20`:
+
+<iframe
+  src="assets/winvsgolddiff.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+The box plots show the distribution of gold difference 20 minutes into the match for teams that won and lost. Teams that lost generally had a negative gold difference, while teams that won generally had a positive gold difference.
