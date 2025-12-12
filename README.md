@@ -35,6 +35,7 @@ This is the head of my cleaned Dataframe:
 | False |       57629 |       1209 |      31228 |      710 |           1 |    38596 |          -5140 |          -48 |        -3473 |
 | True  |       71004 |       1257 |      36368 |      758 |           5 |    42069 |           5140 |           48 |         3473 |
 | True  |       62868 |       1143 |      33717 |      752 |           3 |    41577 |           1744 |           14 |         2286 |
+
 Note: `firstbloodassist` and `datacompleteness` are not included in this dataframe as they are not used in the hypothesis testing or prediction model, but will be used to study missingness.
 
 I performed a univariate analysis on `total_cs`:
