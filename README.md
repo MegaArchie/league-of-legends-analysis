@@ -5,7 +5,9 @@ by Zachary Hartman
 ## Introduction
 
 League of Legends (LOL) is a popular online video game, where teams of five players play against each other. The dataset I will use has data from 2022 from professional matches. The dataset has many different statistics from individual data to team data.
+
 In this project I will focus on team data. Specifically, I will use this team data to investigate my main question, how does this data allow us to make predictions about the outcome of matches.
+
 The dataset has a total of 150,588 rows, which includes both teams and players. Of those rows, only 127,872 are complete. The only data I am interested in is the data for each team, so the number of rows is reduced to 25,098 rows, and 21,312 complete rows. The dataset also has 164 columns, but my investigation is only concerned with 10 of those columns, with 2 additional columns used only to study missingness. Here is an introduction to these rows:
 
 - `result`: A column where 1 indicates that a team won, and 0 indicates that a team lost
@@ -26,6 +28,7 @@ The following columns will not be used in the hypothesis test or the prediction 
 ## Data Cleaning and Exploratory Data Analysis
 
 During the cleaning process, I keep only the rows corresponding to teams, as they contain all the data I am interested in. In addition to that, I only keep rows where the data is complete, which, as mentioned before, is still a large amount of data and more than enough to complete my analysis. I replace the column `result` with the column `win`, which represents the same information, but `win` represents the outcome of the game as a boolean,  where True indicates that a team won, and False indicates that a team lost. The outcome being represented as a boolean makes the information easier to see at a glance.
+
 This is the head of my cleaned Dataframe:
 
 | win   |   totalgold |   total_cs |   goldat20 |   csat20 |   killsat20 |   xpat20 |   golddiffat20 |   csdiffat20 |   xpdiffat20 |
@@ -73,4 +76,24 @@ I grouped the data based by the outcome of the game, and I looked at the mean fo
 
 I believe that there are some columns that are not missing at random (NMAR). One such column that I believe is NMAR is `url`. I believe that when this column is missing, it is a result of the url for that match not existing or not being available. To make this column missing at random (MAR), I think that we could add a column that has a 1 if the url exist, and a 0 if the url doesn't exist.
 
-As mentioned before, `firstbloodassist` and `datacompleteness` are going to be used test missingness. In my tests, if found that the missingness of `firstbloodassist` depended on the value in `datacompleteness` but didn't depend on the value in `win`.
+As mentioned before, `firstbloodassist` and `datacompleteness` are going to be used test missingness. In my tests, if found that the missingness of `firstbloodassist` depended on the value in `datacompleteness` but didn't depend on the value in `win`. For both permuitation tests, I used difference in means as the test statistic, and I used 0.05 as the level of significance for both as well.
+
+First, I performed the permutation test on `firstbloodassist` and `datacompleteness`.
+
+Null Hypothesis: The distribution of `datacompleteness` when `firstbloodassist` is missing is the same as when it is not missing
+Alternative Hypothesis: The distribution of `datacompletenesss` when `firstbloodassist` is missing is different as when it is not missing
+
+After performing the test, the observed test statistic was 0.83 and the p-value was 0.0. Below is the empirical distribution for the difference in means:
+
+<iframe
+  src="assets/missing1.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+The p-value of 0.0 is less than 0.05, so we reject the null hypothesis and comclude that the missingness of `firstbloodassist` depends on `datacompleteness`.
+
+The second permutation test I did was on `firstbloodassist` and `win`.
+
+Null Hypothesis: distribution of result when firstbloodassist is missing is the same as when it is not missing
